@@ -1,24 +1,39 @@
-import React from 'react';
-import {View, Button, StyleSheet, Text, TouchableOpacity} from 'react-native';
+//import React from 'react';
+import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import { withNavigation } from 'react-navigation';
 
-export default function App(){
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Selecione o modo de Login: </Text>
-      <TouchableOpacity style={styles.buttonFacebook}>
-        <Text style={styles.newText}>Facebook</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.buttonDigital}>
-        <Text style={styles.newText}>Digital</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.buttonPassword}>
-        <Text style={styles.newText}>Senha</Text>
-      </TouchableOpacity>
-    </View>
-  )
+import React, { Component } from 'react';
+
+
+export default class Main extends Component {
+  render(){
+    return (
+      <View style={styles.container}>
+
+        <Text style={styles.title}>Selecione o modo de Login: </Text>
+
+        <TouchableOpacity style={styles.buttonFacebook}>
+          <Text style={styles.newText}>Facebook</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.buttonDigital}>
+          <Text style={styles.newText}>Digital</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => this.props.navigation.navigate('LoginPasswd')} style={styles.buttonPassword}>
+          <Text style={styles.newText}>Senha</Text>
+        </TouchableOpacity>
+
+      </View>
+    )
+  }
 }
 
-const styles = StyleSheet.create({
+function handleLogin(){
+  
+}
+
+const styles = StyleSheet.create({                                                                                                      
   container: {
     flex: 1,
     alignItems: 'center',
