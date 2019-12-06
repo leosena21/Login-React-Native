@@ -1,14 +1,13 @@
-//import React from 'react';
-import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
-import { withNavigation } from 'react-navigation';
-
 import React, { Component } from 'react';
+import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import { LoginButton, AccessToken } from 'react-native-fbsdk';
+
 
 
 export default class Main extends Component {
   render(){
     return (
-      <View style={styles.container}>
+      <View>
 
         <Text style={styles.title}>Selecione o modo de Login: </Text>
 
@@ -23,6 +22,25 @@ export default class Main extends Component {
         <TouchableOpacity onPress={() => this.props.navigation.navigate('LoginPasswd')} style={styles.buttonPassword}>
           <Text style={styles.newText}>Senha</Text>
         </TouchableOpacity>
+
+        <LoginButton
+          onLoginFinished={
+            (error, result) => {
+              if (error) {
+                console.log("login has error: " + result.error);
+              } else if (result.isCancelled) {
+                console.log("login is cancelled.");
+              } else {
+                AccessToken.getCurrentAccessToken().then(
+                  (data) => {
+                    console.log(data.accessToken.toString());
+                    this.props.navigation.navigate('Loged');
+                  }
+                )
+              }
+            }
+          }
+          onLogoutFinished={() => console.log("logout.")}/>
 
       </View>
     )
