@@ -30,14 +30,13 @@ export default class Main extends Component {
                 console.log("login has error: " + result.error);
               } else if (result.isCancelled) {
                 console.log("login is cancelled.");
-              } else {
-                  this.props.navigation.navigate('Loged');
-                // AccessToken.getCurrentAccessToken().then(
-                //   (data) => {
-                //     console.log(data.accessToken.toString());
-                //     this.props.navigation.navigate('Loged');
-                // }
-                //)
+              } else {            
+                AccessToken.getCurrentAccessToken().then(
+                  (data) => {
+                    console.log(data.accessToken.toString());
+                    this.props.navigation.navigate('Loged');
+                }
+                )
               }
             }
           }
