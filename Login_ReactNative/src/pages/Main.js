@@ -31,12 +31,13 @@ export default class Main extends Component {
               } else if (result.isCancelled) {
                 console.log("login is cancelled.");
               } else {
-                AccessToken.getCurrentAccessToken().then(
-                  (data) => {
-                    console.log(data.accessToken.toString());
-                    this.props.navigation.navigate('Loged');
-                  }
-                )
+                  this.props.navigation.navigate('Loged');
+                // AccessToken.getCurrentAccessToken().then(
+                //   (data) => {
+                //     console.log(data.accessToken.toString());
+                //     this.props.navigation.navigate('Loged');
+                // }
+                //)
               }
             }
           }
