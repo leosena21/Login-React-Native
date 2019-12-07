@@ -7,13 +7,28 @@ import { LoginButton, AccessToken } from 'react-native-fbsdk';
 export default class Main extends Component {
   render(){
     return (
-      <View>
+      <View style={styles.container}>
 
         <Text style={styles.title}>Selecione o modo de Login: </Text>
-
-        <TouchableOpacity style={styles.buttonFacebook}>
-          <Text style={styles.newText}>Facebook</Text>
-        </TouchableOpacity>
+        
+        <LoginButton style={styles.buttonFacebook}
+        onLoginFinished={
+          (error, result) => {
+            if (error) {
+              console.log("login has error: " + result.error);
+            } else if (result.isCancelled) {
+              console.log("login is cancelled.");
+            } else {            
+              AccessToken.getCurrentAccessToken().then(
+                (data) => {
+                  console.log(data.accessToken.toString());
+                  this.props.navigation.navigate('Loged');
+                }
+              )
+            }
+          }
+        }
+        onLogoutFinished={() => console.log("logout.")}/>  
 
         <TouchableOpacity style={styles.buttonDigital}>
           <Text style={styles.newText}>Digital</Text>
@@ -22,25 +37,6 @@ export default class Main extends Component {
         <TouchableOpacity onPress={() => this.props.navigation.navigate('LoginPasswd')} style={styles.buttonPassword}>
           <Text style={styles.newText}>Senha</Text>
         </TouchableOpacity>
-
-        <LoginButton
-          onLoginFinished={
-            (error, result) => {
-              if (error) {
-                console.log("login has error: " + result.error);
-              } else if (result.isCancelled) {
-                console.log("login is cancelled.");
-              } else {            
-                AccessToken.getCurrentAccessToken().then(
-                  (data) => {
-                    console.log(data.accessToken.toString());
-                    this.props.navigation.navigate('Loged');
-                }
-                )
-              }
-            }
-          }
-          onLogoutFinished={() => console.log("logout.")}/>
 
       </View>
     )
