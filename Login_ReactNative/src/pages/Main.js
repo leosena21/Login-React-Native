@@ -47,10 +47,6 @@ export default class Main extends Component {
   }
 }
 
-function handleLogin(){
-  
-}
-
 const styles = StyleSheet.create({                                                                                                      
   container: {
     flex: 1,
