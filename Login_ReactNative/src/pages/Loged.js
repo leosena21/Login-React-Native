@@ -13,7 +13,7 @@ export default class pages extends Component {
   state = { auth: false }
 
   render() {
-      if( !this.state.auth ) return (<RequireId history=                  {this.props.history} handlePopupDismissed={() =>     this.setState({auth: true})} />)
+      if( !this.state.auth ) return (<RequireId history= {this.props.navigation} handlePopupDismissed={() =>     this.setState({auth: true})} />)
     return (
      <View style={styles.container}>
        <Text style={styles.Text}>Login realizado com sucesso</Text>

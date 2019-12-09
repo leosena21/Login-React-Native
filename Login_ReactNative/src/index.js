@@ -2,8 +2,10 @@ import React from 'react';
 
 import Routes from './routes';
 
-export default function App(){
-  return (
-    <Routes />
-  )
+export default class App extends React.Component{
+  render(){
+    return (
+      <Routes />
+    );
+  }
 }

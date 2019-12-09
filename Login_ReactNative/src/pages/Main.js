@@ -20,7 +20,7 @@ export default class Main extends Component {
               AccessToken.getCurrentAccessToken().then(
                 (data) => {
                   console.log(data.accessToken.toString());
-                  this.props.navigation.navigate('Loged');
+                  this.props.navigation.push('Loged');
                 }
               )
             }
@@ -32,7 +32,7 @@ export default class Main extends Component {
           <Text style={styles.newText}>Digital</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => this.props.navigation.navigate('LoginPasswd')} style={styles.buttonPassword}>
+        <TouchableOpacity onPress={() => this.props.navigation.push('LoginPasswd')} style={styles.buttonPassword}>
           <Text style={styles.newText}>Senha</Text>
         </TouchableOpacity>
 

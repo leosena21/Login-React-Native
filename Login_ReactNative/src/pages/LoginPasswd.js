@@ -7,25 +7,25 @@ import { TextInput } from 'react-native-gesture-handler';
 
 export default class LoginPasswd extends Component{
   render(){
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}> Realize Login</Text>
-      <TextInput 
-        style={styles.input}
-        placeholder="Informe o usuario"
-      />
+    return (
+      <View style={styles.container}>
+        <Text style={styles.title}> Realize Login</Text>
+        <TextInput 
+          style={styles.input}
+          placeholder="Informe o usuario"
+        />
 
-      <TextInput
-        style={styles.input}
-        placeholder="Informe o senha"
-      />
+        <TextInput
+          style={styles.input}
+          placeholder="Informe o senha"
+        />
 
-      <TouchableOpacity style={styles.button}>
-        <Text style={styles.text} >Realizar Login</Text>
-      </TouchableOpacity>
-    </View>
-  );
-}
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.text} >Realizar Login</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({                                                                                                      

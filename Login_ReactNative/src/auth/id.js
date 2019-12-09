@@ -23,7 +23,7 @@ class FingerprintPopup extends Component {
     }
 
     // Função para retornar a rota inicial
-    goBack = () => this.props.history.goBack()
+    goBack = () => this.props.history.pop()
     // Função para remover o componente da tela, quando ele for desmontado    
     componentWillUnmount = () => FingerprintScanner.release()    
     // Se a autenticação falhar ou o aplicativo não possuir leitor, 
