@@ -4,10 +4,16 @@ import { View, Text, StyleSheet } from 'react-native';
 
 import { LoginButton, AccessToken } from 'react-native-fbsdk';
 
+import RequireId from '../auth/id';
+
 // import { Container } from './styles';
 
 export default class pages extends Component {
+  
+  state = { auth: false }
+
   render() {
+      if( !this.state.auth ) return (<RequireId history=                  {this.props.history} handlePopupDismissed={() =>     this.setState({auth: true})} />)
     return (
      <View style={styles.container}>
        <Text style={styles.Text}>Login realizado com sucesso</Text>

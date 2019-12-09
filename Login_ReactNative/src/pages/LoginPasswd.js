@@ -5,7 +5,8 @@ import { TextInput } from 'react-native-gesture-handler';
 
 // import { Container } from './styles';
 
-export default function LoginPasswd(){
+export default class LoginPasswd extends Component{
+  render(){
   return (
     <View style={styles.container}>
       <Text style={styles.title}> Realize Login</Text>
@@ -24,6 +25,7 @@ export default function LoginPasswd(){
       </TouchableOpacity>
     </View>
   );
+}
 }
 
 const styles = StyleSheet.create({                                                                                                      

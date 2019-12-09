@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import { LoginButton, AccessToken } from 'react-native-fbsdk';
 
-
-
 export default class Main extends Component {
   render(){
     return (
