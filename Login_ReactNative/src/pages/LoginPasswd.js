@@ -19,9 +19,11 @@ export default function LoginPasswd() {
     let filtred = users.filtered('user="'+userEmail+'" AND pass="'+pass+'"');
     if(filtred.length>0){
       console.log('loged');
+      alert("Logado");
     }
     else{
-      console.log('fail log')
+      console.log('fail log');
+      alert("Falha ao logar");
     }
 
   }
