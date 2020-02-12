@@ -1,9 +1,23 @@
 import React, { Component } from 'react';
-import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {View, StyleSheet, Text, TouchableOpacity, Alert} from 'react-native';
 import { LoginButton, AccessToken } from 'react-native-fbsdk';
 
+
 export default class Main extends Component {
+
+  handleClick = () => {
+    AccessToken.getCurrentAccessToken().then(
+      (data) => {
+        console.log(data.accessToken.toString());
+        this.props.navigation.push('Loged');
+      }
+    ).catch(
+      err => { alert("Sem logar") }
+    )
+  }
+
   render(){
+
     return (
       <View style={styles.container}>
 
@@ -28,12 +42,16 @@ export default class Main extends Component {
         }
         onLogoutFinished={() => console.log("logout.")}/>  
 
-        <TouchableOpacity style={styles.buttonDigital}>
+        <TouchableOpacity onPress={this.handleClick} style={styles.buttonDigital}>
           <Text style={styles.newText}>Digital</Text>
         </TouchableOpacity>
 
         <TouchableOpacity onPress={() => this.props.navigation.push('LoginPasswd')} style={styles.buttonPassword}>
           <Text style={styles.newText}>Senha</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => this.props.navigation.push('CadastroSenha')} style={styles.buttonCad}>
+          <Text style={styles.newText}>Cadastro Senha</Text>
         </TouchableOpacity>
 
       </View>
@@ -90,6 +108,15 @@ const styles = StyleSheet.create({
     height: 46,
     alignSelf: 'stretch',
     backgroundColor: '#64BC05',
+    borderRadius: 4,
+    marginTop: 15,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttonCad: {
+    height: 46,
+    alignSelf: 'stretch',
+    backgroundColor: '#F88810',
     borderRadius: 4,
     marginTop: 15,
     justifyContent: 'center',

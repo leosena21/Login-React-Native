@@ -37,6 +37,12 @@ target 'Login_ReactNative' do
 
   pod 'react-native-fbsdk', :path => '../node_modules/react-native-fbsdk'
 
+  pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
+
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
+  pod 'RealmJS', :path => '../node_modules/realm'
+
   target 'Login_ReactNativeTests' do
     inherit! :search_paths
     # Pods for testing

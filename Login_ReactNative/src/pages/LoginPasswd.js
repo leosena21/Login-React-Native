@@ -1,88 +1,63 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import {View, StyleSheet, Text, TouchableOpacity, Alert} from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
+import getRealm from '../services/realm';
+import { checkPropTypes } from 'prop-types';
 
 // import { Container } from './styles';
 
-export default class LoginPasswd extends Component{
+export default function LoginPasswd() {
 
-  constructor(props){
-    super(props);
-    this.state = {
-      userEmail: "",
-      posts: {}
-    };
-  };
+  const [userEmail, setuserEmail] = useState('');
+  const [pass, setpass] = useState('');  
+  
+  async function check(){
 
-  upd = () => {
+    const realm = await getRealm();
+    let users = realm.objects('users');
+    let filtred = users.filtered('user="'+userEmail+'" AND pass="'+pass+'"');
+    if(filtred.length>0){
+      console.log('loged');
+    }
+    else{
+      console.log('fail log')
+    }
 
-      fetch('https://planetaaguaba.com/Testephp/teste.php',{
-			method:'POST',
-			header:{
-				'Accept': 'application/json',
-				'Content-type': 'application/json'
-			},
-			body:JSON.stringify({
-        // we will pass our input data to server
-        
-				email_user: this.state.userEmail
-			})
-			
-		})
-		.then((response) => response.json())
-    .then(res => {
-      this.setState({
-          ...this.state, // Not required but just a heads up on using mutation
-          posts: res //Não é necessario isso aqui, mas é valido para guardar informações futuras
-      })
-
-      if(res.retorno=='CADASTRADO'){
-        this.popup(this.props.navigation.push('Loged'));
-      }
-      else{
-        this.popup();
-      }
-  })
-  .catch((error => {
-      console.error(error);
-  }));
+  }
+  
+  async function Validation(){
+    try{
+      await check();
+      console.log('checkOK');
+    }
+    catch(err){
+      console.log(err);
+    }
   }
 
-  popup(test){
-    // Works on both Android and iOS
-    Alert.alert(
-      'Informação',
-      this.state.posts.retorno,
-      [
-        {text: 'OK', onPress: () => test},
-      ],
-      {cancelable: false},
-    );
-  }
-    
-  render(){
-    return (
-      <View style={styles.container}>
-        <Text style={styles.title}> {this.state.posts.retorno}</Text>
-        <TextInput 
-          style={styles.input}
-          placeholder="Informe o usuario"
-          onChangeText={userEmail => this.setState({userEmail})}
-        />
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}> Login</Text>
+      <TextInput 
+        style={styles.input}
+        placeholder="Informe o usuario"
+        value={userEmail}
+        onChangeText={setuserEmail}
+      />
 
-        <TextInput
-          style={styles.input}
-          placeholder="Informe o senha"
-          onChangeText={userPassword => this.setState({userPassword})}
-        />
+      <TextInput
+        style={styles.input}
+        placeholder="Informe o senha"
+        value={pass}
+        onChangeText={setpass}
+      />
 
-        <TouchableOpacity onPress={() => this.upd()} style={styles.button}>
-          <Text style={styles.text} >Realizar Login</Text>
-        </TouchableOpacity>
-      </View>
-    );
-  }
+      <TouchableOpacity onPress={Validation} style={styles.button}>
+        <Text style={styles.text} >Realizar Login</Text>
+      </TouchableOpacity>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({                                                                                                      

@@ -2,6 +2,7 @@ import Main from './pages/Main';
 import LoginPasswd from './pages/LoginPasswd';
 import Loged from './pages/Loged';
 import FingerprintPopup from './auth/id'
+import CadastroSenha from './pages/CadastroSenha';
 
 
 import React from 'react';
@@ -25,6 +26,7 @@ const AppNavigator = createStackNavigator(
     LoginPasswd: LoginPasswd,
     Loged: Loged,
     FingerprintPopup: FingerprintPopup,
+    CadastroSenha: CadastroSenha,
   },
   {
     initialRouteName: 'Home',
