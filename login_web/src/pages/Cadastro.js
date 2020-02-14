@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import {View, Text, TouchableOpacity, TextInput} from 'react-native';
-
 import {styles} from '../StyleSheet/CadastroCSS';
-
 import { dbConfig } from '../Database/DbConfig';
 
 var dbCon = dbConfig();
@@ -44,6 +42,8 @@ export default function Cadastro({history}) {
 
     <TextInput
       style={styles.input}
+      secureTextEntry={true}
+      multiline={false} 
       placeholder="Informe o senha"
       value={pass}
       onChangeText={setPass}

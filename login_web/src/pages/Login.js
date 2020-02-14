@@ -38,6 +38,8 @@ export default function Login() {
 
       <TextInput
         style={styles.input}
+        secureTextEntry={true}
+        multiline={false} 
         placeholder="Informe o senha"
         value={pass}
         onChangeText={setpass}
