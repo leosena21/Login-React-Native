@@ -7,7 +7,7 @@ export function dbConfig(){
     db = new Dexie("usuariosdb");
   }
   db.version(1).stores({
-    usuarios: "++id,name,userLog,passwd"
+    usuarios: "++id,name,&userLog,passwd"
   });
   return db;
 }
