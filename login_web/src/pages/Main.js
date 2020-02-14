@@ -2,10 +2,6 @@ import React from 'react';
 import {View, Text, TouchableOpacity, Image} from 'react-native';
 import logo from '../images/logo192.png';
 import {styles} from '../StyleSheet/MainCSS';
-import { DBConfig } from '../Database/DbConfig';
-import { initDB } from 'react-indexed-db';
- 
-initDB(DBConfig);
 
 function App({history}) {
   return (

@@ -2,26 +2,28 @@ import React, { useState, useEffect } from 'react';
 import {View, Text, TouchableOpacity, TextInput} from 'react-native';
 import {styles} from '../StyleSheet/LoginCSS';
 
-import { useIndexedDB } from 'react-indexed-db';
+import { dbConfig } from '../Database/DbConfig';
 
-
+var dbCon = dbConfig();
 export default function Login() {
   
   const [user, setuser] = useState('');
   const [pass, setpass] = useState('');  
-  
-  function Validation() {
-    const { getByIndex } = useIndexedDB('usuarios');
 
-    getByIndex("user", "teste").then(
-      event => {
-        console.log(event);
-        //history.goBack();
-      },
-      error => {
-        console.log(error);
-      }
-    );
+  function Validation() {
+    try{
+      dbCon.usuarios.where({userLog: user, passwd: pass}).first(usuario => {
+        if(JSON.stringify(usuario)!=null){
+          console.log("Login_OK");
+        }
+        else{
+          console.log("Usuario/Senha incorretos");
+        }
+      });
+    }
+    catch(err){
+      console.log("Login_ERRO" + err);
+    }
   }
 
   return (

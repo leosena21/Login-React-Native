@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import {View, Text, TouchableOpacity, TextInput} from 'react-native';
 
 import {styles} from '../StyleSheet/CadastroCSS';
-import { useIndexedDB } from 'react-indexed-db';
 
-// import { Container } from './styles';
+import { dbConfig } from '../Database/DbConfig';
+
+var dbCon = dbConfig();
 
 export default function Cadastro({history}) {
 
@@ -13,16 +14,14 @@ export default function Cadastro({history}) {
   const [pass, setPass] = useState('');
 
   function AddMore() {
-    const { add } = useIndexedDB('usuarios');
-
-    add({ name: {userName}, user: {user}, pass: {pass} }).then(
-      event => {
-        history.goBack();
-      },
-      error => {
-        console.log(error);
-      }
-    );
+    try{
+      dbCon.usuarios.add({name: userName, userLog: user, passwd: pass});
+      history.goBack();
+      console.log("Foi");
+    }
+    catch(err){
+      console.log(err);
+    }
   }
   
   return (
